@@ -10,7 +10,7 @@ body {
 
 header {
     background-color: #007bff;
-    color: #fff;
+    color: #289fa1;
     padding: 10px 0;
     text-align: center;
 }
@@ -55,6 +55,7 @@ footer {
 }
 
 h2 {
+    margin-top:65px;
     color: #007bff;
     border-bottom: 1px rgb(215, 210, 210) solid
 }
