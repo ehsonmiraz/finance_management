@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Select Report</h2>
+  <form method="post">
+    <small class="note"><strong > Note: Leave month empty to generate a report for an entire year.</strong></small>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+   
+  </form>
+{% endblock %}

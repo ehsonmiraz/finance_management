@@ -1,0 +1,41 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2 >Transactions </h2>
+ 
+  <div class="transaction-list-container">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in object_list %}
+        <tr>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.date }}</td>
+          <td>{{ transaction.category }}</td>
+          <td>{{ transaction.description }}</td>
+          <td>{% if transaction.type == 'Credit' %}
+                 <i class="fas fa-arrow-down text-success"></i>
+              {% elif transaction.type == 'Debit' %}
+                 <i class="fas fa-arrow-up text-danger"></i>
+              {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'transaction_update' transaction.pk %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'transaction_delete' transaction.pk %}" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  <a href="{% url 'transaction_create' %}" class="btn btn-primary">Add Transaction</a>
+{% endblock %}

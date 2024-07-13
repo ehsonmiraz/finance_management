@@ -1,0 +1,53 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>Report for {% if month != '0' %} {{month}}/ {%endif%}{{ year }}</h2>
+
+  <div style="background-color: #cecece;padding:6px">
+  <h5> Expenses: ${{ total_expenditure }}</h5>
+  <h5> Income: ${{ income }}</h5>
+  </div>
+  <hr/> 
+  <h4>Debit Expenses Category-wise</h4>
+  <p> Hover over the pie-chart to see detailed split</p>
+
+  <div id="container" style="width: 75%;">
+    <canvas id="pie-chart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+    function generateColors(n) {
+      let newColors = [];
+      for (let i = 0; i < n; i++) {
+          // Generate a new color dynamically (for example, random colors)
+          let newColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+          newColors.push(newColor);
+      }
+      console.log(newColors);
+      return newColors;
+  }
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ data|safe }},
+          backgroundColor:generateColors({{data|length}}),
+          label: 'Population'
+        }],
+        labels: {{ labels|safe }}
+      },
+      options: {
+        responsive: true
+      }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+
+  </script>
+
+{% endblock %}
+  
