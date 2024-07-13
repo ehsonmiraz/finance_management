@@ -62,13 +62,13 @@ user’s transactions.
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/ehsonmiraz/finance_management.git
-    cd finance_manager
+    cd finance_management
     ```
 
 2. **Create a virtual environment and activate it**:
     ```sh
     python -m venv .venv
-    source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+    source .venv/bin/activate  # On Windows use `./.venv/Scripts/activate`
     ```
 
 3. **Install the required packages**:
